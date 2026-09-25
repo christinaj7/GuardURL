@@ -1,0 +1,104 @@
+{
+  "Logistic Regression": {
+    "model_name": "Logistic Regression",
+    "accuracy": 0.9972,
+    "f1_macro": 0.9972,
+    "f1_weighted": 0.9972,
+    "roc_auc": 0.999,
+    "phishing_metrics": {
+      "precision": 0.9993,
+      "recall": 0.9943,
+      "f1_score": 0.9968,
+      "false_negative_rate": 0.0057,
+      "false_positive_rate": 0.0005,
+      "true_positives": 8492,
+      "false_negatives": 49,
+      "false_positives": 6,
+      "true_negatives": 11453
+    },
+    "legitimate_metrics": {
+      "precision": 0.9957,
+      "recall": 0.9995,
+      "f1_score": 0.9976
+    },
+    "confusion_matrix": [
+      [
+        8492,
+        49
+      ],
+      [
+        6,
+        11453
+      ]
+    ],
+    "train_time_seconds": 0.4
+  },
+  "Random Forest": {
+    "model_name": "Random Forest",
+    "accuracy": 0.9966,
+    "f1_macro": 0.9965,
+    "f1_weighted": 0.9965,
+    "roc_auc": 0.9992,
+    "phishing_metrics": {
+      "precision": 0.9982,
+      "recall": 0.9937,
+      "f1_score": 0.996,
+      "false_negative_rate": 0.0063,
+      "false_positive_rate": 0.0013,
+      "true_positives": 8487,
+      "false_negatives": 54,
+      "false_positives": 15,
+      "true_negatives": 11444
+    },
+    "legitimate_metrics": {
+      "precision": 0.9953,
+      "recall": 0.9987,
+      "f1_score": 0.997
+    },
+    "confusion_matrix": [
+      [
+        8487,
+        54
+      ],
+      [
+        15,
+        11444
+      ]
+    ],
+    "train_time_seconds": 0.56
+  },
+  "XGBoost": {
+    "model_name": "XGBoost",
+    "accuracy": 0.9973,
+    "f1_macro": 0.9972,
+    "f1_weighted": 0.9973,
+    "roc_auc": 0.9993,
+    "phishing_metrics": {
+      "precision": 0.9992,
+      "recall": 0.9945,
+      "f1_score": 0.9968,
+      "false_negative_rate": 0.0055,
+      "false_positive_rate": 0.0006,
+      "true_positives": 8494,
+      "false_negatives": 47,
+      "false_positives": 7,
+      "true_negatives": 11452
+    },
+    "legitimate_metrics": {
+      "precision": 0.9959,
+      "recall": 0.9994,
+      "f1_score": 0.9976
+    },
+    "confusion_matrix": [
+      [
+        8494,
+        47
+      ],
+      [
+        7,
+        11452
+      ]
+    ],
+    "train_time_seconds": 0.39
+  }
+}
