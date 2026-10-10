@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" class="gu-landing-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GuardURL — The Invisible Internet. An extraordinary 3D scroll-driven journey exploring the hidden signals, deception vectors, and Explainable AI architecture behind real-time phishing detection.">
+  <meta name="keywords" content="cybersecurity, phishing detection, machine learning, explainable ai, shap, xgboost, reinforcement learning, url scanner">
+  <title>GuardURL — The Invisible Internet | AI Phishing Detection</title>
+
+  <!-- Typography: Syne (Display), Inter (Body), JetBrains Mono (Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Landing Stylesheet (Guaranteed Isolated Namespace) -->
+  <link rel="stylesheet" href="guardurl-landing.css">
+
+  <!-- Three.js CDN for Spatial WebGL Experience -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Landing Experience Logic -->
+  <script src="guardurl-landing.js" defer></script>
+</head>
+<body class="gu-landing-body">
+
+  <!-- BACKGROUND VOLUMETRIC SCENE & AMBIENCE -->
+  <div class="gu-canvas-container" aria-hidden="true">
+    <canvas id="gu-webgl-canvas"></canvas>
+  </div>
+  <div class="gu-noise-overlay" aria-hidden="true"></div>
+  <div class="gu-grid-overlay" aria-hidden="true"></div>
+  <div class="gu-cursor-spotlight" aria-hidden="true"></div>
+
+  <!-- FIXED LATERAL SCROLL PROGRESS HUD -->
+  <aside class="gu-scroll-hud" aria-label="Scene progress tracker">
+    <div class="gu-hud-percentage">00%</div>
+    <div class="gu-hud-track">
+      <div class="gu-hud-thumb"></div>
+    </div>
+    <div class="gu-hud-scenes">
+      <button class="gu-hud-scene-dot gu-active" data-scene="gu-scene-signal" aria-label="Jump to Scene 1">
+        <span>01 SIGNAL</span>
+      </button>
+      <button class="gu-hud-scene-dot" data-scene="gu-scene-deception" aria-label="Jump to Scene 2">
+        <span>02 DECEPTION</span>
+      </button>
+      <button class="gu-hud-scene-dot" data-scene="gu-scene-engine" aria-label="Jump to Scene 3">
+        <span>03 ENGINE</span>
+      </button>
+      <button class="gu-hud-scene-dot" data-scene="gu-scene-reveal" aria-label="Jump to Scene 4">
+        <span>04 REVEAL</span>
+      </button>
+      <button class="gu-hud-scene-dot" data-scene="gu-scene-final" aria-label="Jump to Scene 5">
+        <span>05 PERIMETER</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- FIXED TOP HUD NAVIGATION -->
+  <header class="gu-header">
+    <a href="#gu-scene-signal" class="gu-brand" aria-label="GuardURL Home">
+      <div class="gu-brand-emblem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="m9 12 2 2 4-4"/>
+        </svg>
+      </div>
+      <div class="gu-brand-text">
+        <span class="gu-brand-title">Guard<span>URL</span></span>
+        <span class="gu-brand-sub">XAI &bull; Invisible Internet</span>
+      </div>
+    </a>
+
+    <nav aria-label="Primary Navigation">
+      <ul class="gu-nav-menu">
+        <li class="gu-nav-item">
+          <a href="#gu-scene-signal"><span class="gu-nav-num">01</span> The Signal</a>
+        </li>
+        <li class="gu-nav-item">
+          <a href="#gu-scene-deception"><span class="gu-nav-num">02</span> Deception</a>
+        </li>
+        <li class="gu-nav-item">
+          <a href="#gu-scene-engine"><span class="gu-nav-num">03</span> Analysis Engine</a>
+        </li>
+        <li class="gu-nav-item">
+          <a href="#gu-scene-reveal"><span class="gu-nav-num">04</span> The Reveal</a>
+        </li>
+        <li class="gu-nav-item">
+          <a href="#gu-scene-final"><span class="gu-nav-num">05</span> Sandbox</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="gu-header-controls">
+      <button id="gu-audio-btn" class="gu-audio-toggle" title="Toggle cybernetic haptic audio" aria-label="Toggle Audio">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <span class="gu-audio-status">AUDIO: OFF</span>
+      </button>
+
+      <a href="index.html" class="gu-btn-scanner-cta" title="Launch the full operational SOC Dashboard">
+        <span>LAUNCH SCANNER</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN SCROLL-DRIVEN NARRATIVE -->
+  <main class="gu-landing-wrapper">
+
+    <!-- ====================================================================
+         SCENE 01 — THE SIGNAL
+         ==================================================================== -->
+    <section id="gu-scene-signal" class="gu-scene-section" aria-labelledby="gu-hero-title">
+      <div class="gu-container gu-hero-content">
+        <div class="gu-badge-track">
+          <span>The Invisible Internet</span>
+        </div>
+
+        <h1 id="gu-hero-title" class="gu-headline-large">
+          Not every link is <span class="gu-highlight">what it seems.</span>
+        </h1>
+
+        <p class="gu-body-lead">
+          Behind every URL is a trail of signals. GuardURL uses machine learning to uncover the warning signs before you click.
+        </p>
+
+        <div class="gu-hero-actions">
+          <a href="#gu-scene-deception" class="gu-magnetic-btn">
+            <span>Enter the Signal</span>
+            <svg class="gu-btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#gu-scene-engine" class="gu-btn-ghost">
+            <span>How It Works</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg>
+          </a>
+        </div>
+
+        <div class="gu-scroll-cue">
+          <span class="gu-scroll-line"></span>
+          <span>Scroll to uncover the deception</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCENE 02 — THE DECEPTION
+         ==================================================================== -->
+    <section id="gu-scene-deception" class="gu-scene-section" aria-labelledby="gu-deception-title">
+      <div class="gu-container">
+        <div class="gu-scene-numeral">Scene // 02 — The Deception</div>
+        
+        <h2 id="gu-deception-title" class="gu-headline-large">
+          Deception hides in <span class="gu-threat-word">plain sight.</span>
+        </h2>
+
+        <p class="gu-body-lead">
+          A harmless link to the human eye. A calculated threat beneath the surface.
+        </p>
+
+        <!-- Interactive Exploded URL Dissection Chamber -->
+        <div class="gu-url-dissection-wrapper">
+          <div class="gu-url-display-panel">
+            <div class="gu-laser-scanner" aria-hidden="true"></div>
+            
+            <div class="gu-url-bar-top">
+              <span class="gu-url-tag">
+                <span class="gu-url-status-dot"></span>
+                ACTIVE ADVERSARIAL DISSECTION &bull; REAL PHISHING LURE
+              </span>
+              <span class="gu-tel-label">SELECT TOKEN TO AUDIT</span>
+            </div>
+
+            <div class="gu-raw-url-string" role="region" aria-label="Exploded URL Tokens">
+              <span class="gu-url-chunk gu-chunk-protocol" data-target="gu-card-proto" title="Inspect Protocol Signature">https://</span>
+              <span class="gu-url-chunk gu-chunk-homoglyph" data-target="gu-card-homoglyph" title="Inspect Homoglyph Anomaly">paypa1</span>
+              <span class="gu-url-chunk gu-chunk-lure" data-target="gu-card-sub" title="Inspect Subdomain Inflation">-account-security-update</span>
+              <span class="gu-url-chunk gu-chunk-tld" data-target="gu-card-tld" title="Inspect TLD Probability">.com</span>
+              <span class="gu-url-chunk gu-chunk-query" data-target="gu-card-query" title="Inspect Query Vector">/signin?auth=verify&amp;token=8f9e</span>
+            </div>
+          </div>
+
+          <!-- 5 Exploded Analysis Layers Grid -->
+          <div class="gu-layers-grid">
+            <!-- Layer 1: Protocol -->
+            <article class="gu-decomp-card" id="gu-card-proto">
+              <div class="gu-card-idx">VECTOR 01 // TRANSPORT</div>
+              <h3 class="gu-card-title">
+                Protocol Cloaking
+                <span class="gu-metric-tag">SSL ACTIVE</span>
+              </h3>
+              <div class="gu-card-val">https://</div>
+              <p class="gu-card-desc">
+                Valid TLS transport exploited to project artificial legitimacy.
+              </p>
+            </article>
+
+            <!-- Layer 2: Homoglyph (The Second One) -->
+            <article class="gu-decomp-card gu-threat-card" id="gu-card-homoglyph">
+              <div class="gu-card-idx">VECTOR 02 // IDENTITY</div>
+              <h3 class="gu-card-title">
+                Brand Impersonation
+                <span class="gu-metric-tag gu-coral">CRITICAL THREAT</span>
+              </h3>
+              <div class="gu-card-val gu-coral">paypa1 &bull; Lookalike Typosquat Lure</div>
+              <p class="gu-card-desc">
+                A single lookalike character disguised to hijack trusted brand recognition.
+              </p>
+            </article>
+
+            <!-- Layer 3: Subdomain Inflation -->
+            <article class="gu-decomp-card" id="gu-card-sub">
+              <div class="gu-card-idx">VECTOR 03 // STRUCTURE</div>
+              <h3 class="gu-card-title">
+                Urgency Pretext
+                <span class="gu-metric-tag">LURE CHAIN</span>
+              </h3>
+              <div class="gu-card-val">-account-security-update</div>
+              <p class="gu-card-desc">
+                High-stress security triggers chained to provoke impulsive action.
+              </p>
+            </article>
+
+            <!-- Layer 4: TLD Calibration -->
+            <article class="gu-decomp-card" id="gu-card-tld">
+              <div class="gu-card-idx">VECTOR 04 // REPUTATION</div>
+              <h3 class="gu-card-title">
+                TLD Mismatch
+                <span class="gu-metric-tag">PRIOR VARIANCE</span>
+              </h3>
+              <div class="gu-card-val">.com // Baseline Contrast</div>
+              <p class="gu-card-desc">
+                Empirical baseline reputation probability deviation detected.
+              </p>
+            </article>
+
+            <!-- Layer 5: Query Vector -->
+            <article class="gu-decomp-card" id="gu-card-query">
+              <div class="gu-card-idx">VECTOR 05 // PAYLOAD</div>
+              <h3 class="gu-card-title">
+                Credential Trap
+                <span class="gu-metric-tag">TOKEN HARVEST</span>
+              </h3>
+              <div class="gu-card-val">/signin?auth=verify...</div>
+              <p class="gu-card-desc">
+                Concealed parameters crafted to capture authentication credentials.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCENE 03 — THE ANALYSIS ENGINE
+         ==================================================================== -->
+    <section id="gu-scene-engine" class="gu-scene-section" aria-labelledby="gu-engine-title">
+      <div class="gu-container">
+        <div class="gu-scene-numeral">Scene // 03 — Computational Pipeline</div>
+
+        <h2 id="gu-engine-title" class="gu-headline-large">
+          Look closer. <span class="gu-highlight">See more.</span>
+        </h2>
+
+        <p class="gu-body-lead">
+          34 features computed and classified in under 5 milliseconds. Pure mathematical attribution.
+        </p>
+
+        <!-- 4-Stage Connected Workflow -->
+        <div class="gu-pipeline-container">
+          
+          <!-- Stage 1 -->
+          <div class="gu-stage-node">
+            <div class="gu-stage-lead">
+              <div class="gu-stage-number">Stage 01 // Pipeline</div>
+              <h3 class="gu-stage-heading">Canonicalization &amp; Tokenization</h3>
+              <div class="gu-stage-latency">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>LATENCY: 0.8ms</span>
+              </div>
+            </div>
+            <div class="gu-stage-body">
+              <p class="gu-stage-explanation">
+                Strips cloaking schemes, expands percent-encoding, and audits punycode homographs.
+              </p>
+              <div class="gu-feature-telemetry-grid">
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>Hostname Extraction</span><span>PASS</span></div>
+                  <div class="gu-feature-chip-val">paypa1-account.com</div>
+                </div>
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>Hex Decoded</span><span>0 Traps</span></div>
+                  <div class="gu-feature-chip-val">Zero Obfuscation</div>
+                </div>
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>Punycode Audit</span><span>CLEAN</span></div>
+                  <div class="gu-feature-chip-val">Standard ASCII</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="gu-stage-node">
+            <div class="gu-stage-lead">
+              <div class="gu-stage-number">Stage 02 // Engineering</div>
+              <h3 class="gu-stage-heading">34-Feature Extraction</h3>
+              <div class="gu-stage-latency">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>LATENCY: 1.4ms</span>
+              </div>
+            </div>
+            <div class="gu-stage-body">
+              <p class="gu-stage-explanation">
+                Extracts 34 lexical ratios, entropy metrics, and structural traits directly from the URL.
+              </p>
+              <div class="gu-feature-telemetry-grid">
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>Shannon Entropy</span><span>4.82</span></div>
+                  <div class="gu-feature-bar-wrap"><div class="gu-feature-bar-fill gu-coral" style="width: 85%;"></div></div>
+                </div>
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>Hyphen Ratio</span><span>0.12</span></div>
+                  <div class="gu-feature-bar-wrap"><div class="gu-feature-bar-fill gu-coral" style="width: 65%;"></div></div>
+                </div>
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>Digit Density</span><span>0.05</span></div>
+                  <div class="gu-feature-bar-wrap"><div class="gu-feature-bar-fill" style="width: 30%;"></div></div>
+                </div>
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>TLD Prior Prob</span><span>0.53</span></div>
+                  <div class="gu-feature-bar-wrap"><div class="gu-feature-bar-fill" style="width: 53%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 3 -->
+          <div class="gu-stage-node">
+            <div class="gu-stage-lead">
+              <div class="gu-stage-number">Stage 03 // Machine Learning</div>
+              <h3 class="gu-stage-heading">XGBoost Decision Forest</h3>
+              <div class="gu-stage-latency">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>LATENCY: 0.39ms</span>
+              </div>
+            </div>
+            <div class="gu-stage-body">
+              <p class="gu-stage-explanation">
+                Evaluates 150 gradient-boosted trees trained on 100,000 stratified samples with 0.48% FNR.
+              </p>
+              <div class="gu-feature-telemetry-grid">
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>Phishing Recall</span><span>99.52%</span></div>
+                  <div class="gu-feature-bar-wrap"><div class="gu-feature-bar-fill" style="width: 99.5%;"></div></div>
+                </div>
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>Accuracy</span><span>99.78%</span></div>
+                  <div class="gu-feature-bar-wrap"><div class="gu-feature-bar-fill" style="width: 99.7%;"></div></div>
+                </div>
+                <div class="gu-feature-chip">
+                  <div class="gu-feature-chip-head"><span>ROC-AUC</span><span>0.9996</span></div>
+                  <div class="gu-feature-bar-wrap"><div class="gu-feature-bar-fill" style="width: 100%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 4 -->
+          <div class="gu-stage-node">
+            <div class="gu-stage-lead">
+              <div class="gu-stage-number">Stage 04 // Explainability</div>
+              <h3 class="gu-stage-heading">SHAP Waterfall &amp; RL Arbiter</h3>
+              <div class="gu-stage-latency">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>LATENCY: 1.1ms</span>
+              </div>
+            </div>
+            <div class="gu-stage-body">
+              <p class="gu-stage-explanation">
+                TreeExplainer generates exact local Shapley values, verified by an adaptive RL confidence policy.
+              </p>
+              <div class="gu-shap-visualizer">
+                <div class="gu-shap-row">
+                  <span class="gu-shap-name">has_brand_lure</span>
+                  <div class="gu-shap-bar-track"><div class="gu-shap-bar-push-phish" style="width: 42%;"></div></div>
+                  <span class="gu-shap-val" style="color:var(--gu-coral-danger)">+0.42</span>
+                </div>
+                <div class="gu-shap-row">
+                  <span class="gu-shap-name">no_of_hyphens &gt; 2</span>
+                  <div class="gu-shap-bar-track"><div class="gu-shap-bar-push-phish" style="width: 26%;"></div></div>
+                  <span class="gu-shap-val" style="color:var(--gu-coral-danger)">+0.26</span>
+                </div>
+                <div class="gu-shap-row">
+                  <span class="gu-shap-name">tld_legitimate_prob</span>
+                  <div class="gu-shap-bar-track"><div class="gu-shap-bar-push-legit" style="width: 18%;"></div></div>
+                  <span class="gu-shap-val" style="color:var(--gu-emerald-safe)">&minus;0.18</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCENE 04 — THE REVEAL
+         ==================================================================== -->
+    <section id="gu-scene-reveal" class="gu-scene-section" aria-labelledby="gu-reveal-title">
+      <div class="gu-container">
+        <div class="gu-scene-numeral">Scene // 04 — Synthesis &amp; Resolution</div>
+
+        <h2 id="gu-reveal-title" class="gu-headline-large">
+          From hidden signals to <span class="gu-highlight">informed decisions.</span>
+        </h2>
+
+        <p class="gu-body-lead">
+          Black-box classifiers leave cybersecurity analysts in the dark. GuardURL bridges machine learning and operational intelligence, transforming raw vectors into transparent, auditable conclusions.
+        </p>
+
+        <!-- 4 Verified Metrics Cards -->
+        <div class="gu-reveal-metrics-hub">
+          <div class="gu-metric-stat-card">
+            <div class="gu-stat-number gu-cyan" data-target="99.78" data-suffix="%" data-decimals="2">99.78%</div>
+            <div class="gu-stat-label">Model Accuracy</div>
+            <div class="gu-stat-sub">Validated across 20,000 unseen test URLs from the PhiUSIIL dataset.</div>
+          </div>
+
+          <div class="gu-metric-stat-card">
+            <div class="gu-stat-number" data-target="99.52" data-suffix="%" data-decimals="2">99.52%</div>
+            <div class="gu-stat-label">Phishing Recall</div>
+            <div class="gu-stat-sub">Ensures critical phishing attacks are caught before reaching users.</div>
+          </div>
+
+          <div class="gu-metric-stat-card">
+            <div class="gu-stat-number" data-target="0.48" data-suffix="%" data-decimals="2">0.48%</div>
+            <div class="gu-stat-label">False Negative Rate</div>
+            <div class="gu-stat-sub">Only 41 missed threats out of 20,000 evaluated samples.</div>
+          </div>
+
+          <div class="gu-metric-stat-card">
+            <div class="gu-stat-number gu-cyan" data-target="5" data-suffix="ms" data-decimals="0">&lt;5ms</div>
+            <div class="gu-stat-label">Average Latency</div>
+            <div class="gu-stat-sub">Real-time threat evaluation without unsafe web crawler overhead.</div>
+          </div>
+        </div>
+
+        <!-- Verified Model Architecture Comparison Table -->
+        <div class="gu-comparison-wrapper">
+          <div class="gu-comp-header">
+            <h3 class="gu-comp-title">Empirical Benchmark: 20,000 Stratified Holdout Samples</h3>
+            <span class="gu-comp-badge">RESULTS/METRICS_COMPARISON.JSON</span>
+          </div>
+          <div class="gu-table-scroll">
+            <table class="gu-comparison-table">
+              <thead>
+                <tr>
+                  <th>Architecture</th>
+                  <th>Accuracy</th>
+                  <th>Phishing Recall</th>
+                  <th>Phishing Precision</th>
+                  <th>Phishing F1</th>
+                  <th>False Negatives (Missed)</th>
+                  <th>ROC-AUC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="gu-row-winner">
+                  <td><span class="gu-winner-tag">&starf; XGBoost (Selected)</span></td>
+                  <td>99.78%</td>
+                  <td>99.52%</td>
+                  <td>99.91%</td>
+                  <td>0.9974</td>
+                  <td>0.48% (41 missed)</td>
+                  <td>0.9996</td>
+                </tr>
+                <tr>
+                  <td>Logistic Regression</td>
+                  <td>99.72%</td>
+                  <td>99.43%</td>
+                  <td>99.93%</td>
+                  <td>0.9968</td>
+                  <td>0.57% (49 missed)</td>
+                  <td>0.9996</td>
+                </tr>
+                <tr>
+                  <td>Random Forest (150 trees)</td>
+                  <td>99.66%</td>
+                  <td>99.37%</td>
+                  <td>99.84%</td>
+                  <td>0.9960</td>
+                  <td>0.63% (54 missed)</td>
+                  <td>0.9996</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCENE 05 — THE FINAL EXPERIENCE & LIVE SANDBOX
+         ==================================================================== -->
+    <section id="gu-scene-final" class="gu-scene-section" aria-labelledby="gu-sandbox-title">
+      <div class="gu-container">
+        <div class="gu-scene-numeral">Scene // 05 — The Perimeter</div>
+
+        <h2 id="gu-sandbox-title" class="gu-headline-large">
+          Pause. Inspect. <span class="gu-highlight">Then click.</span>
+        </h2>
+
+        <p class="gu-body-lead">
+          Test any link directly in the live perimeter console. Observe how GuardURL decomposes 34 mathematical signals, computes local SHAP attributions, and arbitrates threat certainty in real time.
+        </p>
+
+        <!-- Live Signal Sandbox Console -->
+        <div class="gu-sandbox-card">
+          <div class="gu-sandbox-header">
+            <div>
+              <h3 class="gu-sandbox-headline">Live Signal Sandbox</h3>
+              <p class="gu-sandbox-subtitle">Evaluates URLs live via backend FastAPI inference, with offline mathematical engine fallback.</p>
+            </div>
+            <div class="gu-badge-track">
+              <span>SANDBOX &bull; SAFE LOCAL EVALUATION</span>
+            </div>
+          </div>
+
+          <form id="gu-sandbox-form" class="gu-sandbox-form" onsubmit="return false;">
+            <div class="gu-sandbox-input-wrap">
+              <span class="gu-sandbox-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </span>
+              <input 
+                type="text" 
+                id="gu-sandbox-url-input" 
+                class="gu-sandbox-input" 
+                placeholder="Enter suspicious or legitimate URL (e.g. https://example.com)"
+                value="http://paypa1-security-verification.xyz/login"
+                autocomplete="off"
+                spellcheck="false"
+                required
+              >
+            </div>
+            <button type="submit" id="gu-sandbox-submit-btn" class="gu-sandbox-btn">
+              <span>ANALYZE URL</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+          </form>
+
+          <!-- Preset Demonstration Samples -->
+          <div class="gu-preset-chips">
+            <span class="gu-preset-label">Test Samples:</span>
+            <button type="button" class="gu-chip gu-threat" data-url="http://paypa1-security-verification.xyz/login">
+              <span>&bull;</span> paypa1-verification.xyz (Homoglyph Threat)
+            </button>
+            <button type="button" class="gu-chip gu-threat" data-url="http://192.168.1.100:8080/secure/bank/signin">
+              <span>&bull;</span> 192.168.1.100:8080 (Adversarial IP/Port)
+            </button>
+            <button type="button" class="gu-chip" data-url="https://example.com">
+              <span>&bull;</span> example.com (Legitimate Domain)
+            </button>
+            <button type="button" class="gu-chip" data-url="https://www.google.com">
+              <span>&bull;</span> google.com (Legitimate Authority)
+            </button>
+          </div>
+
+          <!-- Dynamic Verdict Output Panel -->
+          <div id="gu-verdict-box" class="gu-verdict-result gu-is-phishing">
+            <div class="gu-verdict-shield-col">
+              <div id="gu-verdict-badge" class="gu-verdict-badge gu-phishing">MALICIOUS THREAT DETECTED</div>
+              <div id="gu-verdict-score" class="gu-verdict-score">99.8%</div>
+              <div id="gu-verdict-meta" class="gu-verdict-meta">RISK TIER: CRITICAL // RL ARBITER: ACCEPT_INITIAL_PREDICTION</div>
+            </div>
+
+            <div class="gu-verdict-details-col">
+              <div class="gu-details-title">EXPLAINABLE AI ATTRIBUTIONS (SHAP FACTORS)</div>
+              <div id="gu-shap-factors" class="gu-shap-factors-list">
+                <div class="gu-shap-factor-item gu-risk">
+                  <span>&blacktriangle;</span> <strong>homoglyph_lure:</strong> +0.48 (Pushes to Phishing)
+                </div>
+                <div class="gu-shap-factor-item gu-risk">
+                  <span>&blacktriangle;</span> <strong>suspicious_keywords:</strong> +0.32 (Pushes to Phishing)
+                </div>
+                <div class="gu-shap-factor-item gu-risk">
+                  <span>&blacktriangle;</span> <strong>tld_reputation:</strong> +0.30 (Pushes to Phishing)
+                </div>
+                <div class="gu-shap-factor-item gu-trust">
+                  <span>&blacktriangledown;</span> <strong>is_https:</strong> &minus;0.12 (Pushes to Legitimate)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grand Exploration CTA Box -->
+        <div class="gu-grand-cta-box">
+          <h3 class="gu-grand-title">Deploy Explainable Defense Today</h3>
+          <p class="gu-grand-sub">
+            Seamlessly navigate to the full operational GuardURL SOC Dashboard to access session history, telemetry inspection, and complete model performance analytics.
+          </p>
+          <div class="gu-grand-btn-row">
+            <a href="index.html" class="gu-btn-dashboard-master">
+              <span>Explore GuardURL Dashboard</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="#gu-scene-signal" class="gu-btn-ghost">
+              <span>Back to The Signal</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MINIMALIST EDITORIAL FOOTER -->
+  <footer class="gu-footer">
+    <div class="gu-footer-left">
+      <div class="gu-footer-brand">Guard<span>URL</span> &bull; The Invisible Internet</div>
+      <div class="gu-footer-tagline">Adaptive Supervisory XAI &bull; Trained on PhiUSIIL (235,795 URLs)</div>
+    </div>
+
+    <div class="gu-footer-right">
+      <a href="index.html" class="gu-footer-link">Operational Scanner</a>
+      <span style="color:var(--gu-text-muted)">&bull;</span>
+      <span class="gu-footer-link" style="color:var(--gu-text-muted)">Press [S] for Scanner</span>
+      <span style="color:var(--gu-text-muted)">&bull;</span>
+      <a href="#gu-scene-signal" class="gu-btn-top">
+        <span>Top</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>

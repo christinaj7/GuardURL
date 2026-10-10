@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=frontend/guardurl-landing.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuardURL — The Invisible Internet</title>
+  <style>
+    body {
+      background-color: #020409;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    .pulse-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #00f2fe;
+      box-shadow: 0 0 16px #00f2fe;
+      margin-bottom: 20px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.6); opacity: 0.4; }
+    }
+    a {
+      color: #00f2fe;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      padding: 10px 20px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 16px;
+      transition: all 0.2s ease;
+    }
+    a:hover {
+      background: rgba(0, 242, 254, 0.1);
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    }
+  </style>
+  <script>
+    window.location.replace("frontend/guardurl-landing.html");
+  </script>
+</head>
+<body>
+  <div class="pulse-dot"></div>
+  <h2>Initializing GuardURL &bull; The Invisible Internet Experience</h2>
+  <p>Loading 3D spatial WebGL environment...</p>
+  <p><a href="frontend/guardurl-landing.html">Click here if not redirected automatically &rarr;</a></p>
+</body>
+</html>
