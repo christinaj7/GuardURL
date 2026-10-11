@@ -11,6 +11,7 @@ import time
 from typing import Optional
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -169,6 +170,10 @@ def submit_feedback(payload: FeedbackRequest):
 # Mount static files for the frontend dashboard
 frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend"))
 if os.path.exists(frontend_path):
+    @app.get("/", include_in_schema=False)
+    def landing_page():
+        return RedirectResponse(url="/guardurl-landing.html")
+
     app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
 
 
